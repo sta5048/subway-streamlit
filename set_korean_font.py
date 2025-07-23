@@ -1,15 +1,14 @@
-# set_korean_font.py
 import matplotlib.pyplot as plt
-import matplotlib.font_manager as fm
+from matplotlib import font_manager as fm
 import os
 import urllib.request
 
 def setup_korean_font():
-    font_url = "https://github.com/google/fonts/raw/main/ofl/notosanskr/NotoSansKR-Regular.otf"
-    font_path = "/tmp/NotoSansKR-Regular.otf"
-
+    font_url = "https://github.com/google/fonts/raw/main/ofl/notosanskr/NotoSansKR-Regular.ttf"
+    font_path = "/tmp/NotoSansKR-Regular.ttf"
+    
     if not os.path.exists(font_path):
         urllib.request.urlretrieve(font_url, font_path)
 
-    font_prop = fm.FontProperties(fname=font_path)
-    plt.rc('font', family=font_prop.get_name())
+    fm.fontManager.addfont(font_path)
+    plt.rcParams["font.family"] = "Noto Sans KR"
